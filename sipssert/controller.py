@@ -40,6 +40,7 @@ class Controller:
         self.logs_dir = args.logs_dir
         self.config_file = args.config
         self.no_delete = args.no_delete
+        self.no_trace = args.no_trace
         current_date = datetime.now().strftime("%Y-%m-%d.%H:%M:%S.%f")
         self.run_logs_dir = os.path.join(self.logs_dir, current_date)
         self.link_file = os.path.join(self.logs_dir, "latest")

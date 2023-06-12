@@ -55,7 +55,7 @@ class Scenario():
         nets = self.networks if self.networks else []
         if self.network:
             nets.append(self.network)
-        self.no_trace = self.controller.args.no_trace
+        self.no_trace = self.controller.no_trace
         if not self.no_trace:
             self.tracer = tracer.Tracer(self.scen_logs_dir, "capture", nets)
         self.timeout = self.config.get("timeout", 0)
