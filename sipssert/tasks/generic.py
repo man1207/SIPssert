@@ -24,4 +24,12 @@ class GenericTask(Task):
     """Class that implements a generic task"""
     pass
 
+    def get_task_env(self):
+
+        env_dict = {}
+
+        if "env" in self.config:
+            env_dict = self.config["env"]
+
+        return env_dict
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
