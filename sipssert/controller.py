@@ -55,7 +55,16 @@ class Controller:
         current_date = datetime.now().strftime("%Y-%m-%d.%H:%M:%S.%f")
         self.run_logs_dir = os.path.join(self.logs_dir, current_date)
         self.link_file = os.path.join(self.logs_dir, "latest")
+        # parse extra vars
+        extra_vars_dict = {}
+        for var in args.extra_vars:
+            k, v = var.split('=')
+            extra_vars_dict[k] = v
         self.create_run_logs_dir()
+        try:
+            self.config = config.Config(self.config_file, None, "defines.yml", template_vars=extra_vars_dict)
+        except config.ConfigParseError:
+            raise Exception("could not parse {}".format(self.config_file))
         if self.config.get("logging"):
             logging = self.config.get("logging").get("controller")
         else:

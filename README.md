@@ -204,6 +204,8 @@ be run; if `SET` is specified, only tests within that test set are being matched
 * `-e|--exclude [SET/]TEST` - similar to `-t/--test`, but specifies the tests
 that should be excluded from the execution; if both include and exclude match
 a test, the test will not be run
+* `-E|--extra-vars key=value` - set additional variables as key-value pair; you can
+define extra-vars as much as needed
 * `-n|--no-delete` - do not delete the resources after run (**NOTICE**: you
 will have to manually delete both containers and networks)
 * `-v|--version` - prints the current version
