@@ -22,20 +22,43 @@ from sipssert.task import Task
 
 class AmiClientTask(Task):
 
-    default_daemon = True    
     default_image = "yaroslavonline/ami-client"
+    default_mount_point = '/home'
+    default_daemon = True
 
     def __init__(self, test_dir, config):
         super().__init__(test_dir, config)
         self.script = config.get("script")
+
+        self.asterisk_ip = self.config.get("asterisk_ip")
+        self.login = self.config.get("login")
+        self.secret = self.config.get("secret")
 
         if self.script and not os.path.isabs(self.script):
             self.script = os.path.join(self.mount_point, self.script)
 
     def get_task_args(self):
         args = []
+
         if self.script:
             args.append(self.script)
+        else:
+            if self.config_file:
+                args.append("--config")
+                args.append(self.config_file)
+
+            if self.asterisk_ip:
+                args.append("--asteriskip")
+                args.append(self.asterisk_ip)
+
+            if self.login:
+                args.append("--login")
+                args.append(self.login)
+
+            if self.secret:
+                args.append("--secret")
+                args.append(self.secret)
+
         return args
 
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
