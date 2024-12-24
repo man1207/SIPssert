@@ -4,7 +4,7 @@ inputs:
   sipssert-repo:
     description: 'SIPssert repository to checkout'
     required: false
-    default: 'OpenSIPS/SIPssert'
+    default: 'man1207/SIPssert'
   tests-repo:
     description: 'Tests repository to checkout'
     required: false
@@ -20,6 +20,7 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: ${{ inputs.sipssert-repo }}
+        ref: feature/junit
         path: sipssert
 
     - name: Install SIPssert requirements
@@ -39,4 +40,5 @@ runs:
       if: "${{ inputs.tests-repo != '' }}"
       with:
         repository: ${{ inputs.tests-repo }}
+        ref: feature/junit
         path: ${{ inputs.directory }}

@@ -4,7 +4,7 @@ inputs:
   sipssert-repo:
     description: 'SIPssert repository to checkout'
     required: false
-    default: 'OpenSIPS/SIPssert'
+    default: 'man1207/SIPssert'
   directory:
     description: 'Directory where the run.yml config file is located'
     required: false
@@ -24,6 +24,7 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: ${{ inputs.sipssert-repo }}
+        ref: feature/junit
         path: sipssert
 
     - name: Read and parse YAML file
